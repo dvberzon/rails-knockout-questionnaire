@@ -1,0 +1,2 @@
+module WebappsHelper
+end
