@@ -1,0 +1,8 @@
+<!-- ko ifnot: editing_participant -->
+<%= render 'participants_list' %>
+<!-- /ko -->
+
+<!-- # Otherwise show the details page -->
+<!-- ko if: editing_participant -->
+<%= render 'participant_form' %>  
+<!-- /ko -->

@@ -1,0 +1,378 @@
+/** app styles go here **/
+
+div#application {
+	display:none;
+}
+
+.starter-template {
+  margin: 30px 15px 20px 15px;
+  padding: 2px 0 0 115px;
+  text-align: left;
+  min-height: 90px;
+  line-height: 90px;
+  background: url('/images/apple.jpg') top left no-repeat;
+  background-size: contain;
+}
+
+.starter-template h1 {
+	color: #699;
+}
+
+
+p.logged_in_as {
+	float:right;
+	margin:10px 0 0 0;
+}
+
+tr.not_approached td {
+	color:#999;
+}
+
+div.step_container {
+	margin-bottom: 40px;
+}
+
+/** measures styles **/
+
+
+div.measure {
+	margin:20px 0px;
+}
+
+div.measure ul.options {
+	list-style: none;
+	padding:0px;
+}
+
+div.measure ul.options li {
+	margin: 20px 10%;
+}
+
+div.horizontal label {
+	width:50%;
+	margin-right:20px;
+	text-align: right;
+	vertical-align: top;
+}
+
+div.newline label {
+	width:100%;
+	margin-right:0px;
+	text-align: left;
+}
+
+div.horizontal ul.options,
+div.float ul.options {
+	margin:0px;
+	list-style: none;
+	padding:0px;
+}
+
+div.horizontal ul.options {
+	display:inline-block;
+	width:45%;
+}
+
+div.newline ul.options {
+	text-align:right;
+	width:100%;
+	padding-right: 20px;
+}
+
+div.horizontal ul.options li,
+div.float ul.options li  {
+	display:inline-block;
+	margin:0px 5px;
+}
+
+div.horizontal .form-control {
+	width:40%;
+	display:inline;
+}
+
+img.top_image {
+	margin: 10px 0px 30px -15px;
+}
+
+/** slider **/
+
+span.slider {
+	display:inline-block;
+	height:500px;
+}
+
+div.slider_div {
+	position:relative;
+	width:150px;
+	margin:10px auto;
+	padding:10px;
+	border-radius: 10px;
+	background-color:white;
+}
+
+div.slider_div div.column{
+	float:left;
+	height:520px;
+	width: 50px;
+}
+
+div.slider_div input#slider_input {
+	position:absolute;
+	top:100px;
+	right:-50px;
+	width:40px;
+}
+
+.slider_div div.column_l span {
+	width: 50px;
+	height:50px;
+	text-align: right;
+	display: inline-block;
+}
+
+.slider_div div.column_l {
+	margin-right:5px;
+}
+
+.slider_div div.column_r {
+	margin-top: 10px;
+	background: url('/images/scale.png') top left no-repeat;
+	padding-left:40px;
+}
+
+/** participant admin page **/
+
+.form-horizontal div.panel {
+	padding-right: 15px;
+}
+
+/** new radio buttons **/
+
+ul.radio_buttons .btn {
+	white-space: normal;
+	vertical-align: top;
+	width:100%;
+}
+
+ul.radio_buttons .btn i.fa {
+	display: block;
+	font-size:25px;
+	margin-top:3px;
+}
+
+ul.radio_buttons .btn span {
+	font-size: 13px;
+	line-height: 14px;
+	display:block;
+}
+
+div.flat ul.radio_buttons .btn {
+	text-align: left;
+	width: 90%;
+}
+
+div.flat ul.radio_buttons .btn i.fa {
+	display:inline;
+	float:left;
+	font-size:15px;
+}
+
+div.flat ul.radio_buttons .btn span {
+	display:inline;
+	padding-left:10px;
+}
+
+/** button sizes **/
+
+div.horizontal ul.num_options_2 .btn {
+	width: 140px;
+}
+
+div.float ul.num_options_2 .btn {
+	width: 300px;
+}
+
+
+div.float ul.num_options_3 .btn {
+	width: 210px;
+}
+
+div.float ul.num_options_4 .btn {
+	width:150px;
+}
+
+
+div.float ul.num_options_5 .btn {
+	width: 120px;
+}
+
+div.float ul.num_options_7 .btn {
+	width: 84px;
+}
+
+div#health_and_lifestyle ul.radio_buttons .btn span,
+div#apple_frequency_1 ul.radio_buttons .btn span,
+div#espadq19 ul.radio_buttons .btn span,
+div#espadq22a ul.radio_buttons .btn span,
+div#espadq22b ul.radio_buttons .btn span{
+	height: 22px;
+	line-height: 12px;
+}
+
+div#apple_frequency ul.options li {
+	margin:0px;
+}
+
+div#apple_frequency_1 ul.radio_buttons .btn,
+div#alternate_apple_frequency_1 ul.radio_buttons .btn {
+	width: 111px;
+	padding: 6px;
+}
+
+div#apple_frequency_2 ul.radio_buttons .btn,
+div#alternate_apple_frequency_2 ul.radio_buttons .btn {
+	width: 95px;
+	padding: 6px;
+}
+
+
+div#apple_frequency_3 ul.radio_buttons .btn,
+div#alternate_apple_frequency_3 ul.radio_buttons .btn {
+	width: 135px;
+	padding: 6px;
+}
+
+/** consent page fitting on one page **/
+
+
+
+div#consent div.measure {
+	margin:10px 0;
+}
+
+/** dev panel **/
+
+div.dev-panel {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+/** mandatory measures **/
+
+label.mandatory {
+	color: #428bca;
+}
+
+label.mandatory::after {
+	content: "*";
+}
+
+/** new colouring for tick boxes **/
+
+ul.radio_buttons .btn-success {
+	background-color: #badcaa;
+	color: #333333;
+	text-shadow: none;
+	border: solid 1px #93B683;
+}
+
+ul.radio_buttons .btn-success i {
+	color: #0ea00a;
+}
+
+ul.radio_buttons .btn-danger {
+	background-color: #dcaaaa;
+	color: #333333;
+	text-shadow: none;
+	border: solid 1px #B48989;
+}
+
+ul.radio_buttons .btn-danger i {
+	color: #A00A0A;
+}
+
+p.delete_all {
+	margin-right: 20px;
+}
+
+
+
+/** radio buttons in the participant form **/
+
+#participant_form ul.radio_buttons {
+	list-style: none;
+	padding: 5px 0 0 0;
+	vertical-align: top;
+}
+
+#participant_form ul.radio_buttons li {
+	display:inline-block;
+	width:150px;
+}
+
+
+#participant_form ul.radio_buttons .btn {
+	text-align: left;
+	width: 90%;
+}
+
+#participant_form ul.radio_buttons .btn i.fa {
+	display:inline;
+	float:left;
+	font-size:15px;
+}
+
+#participant_form ul.radio_buttons .btn span {
+	display:inline;
+	padding-left:10px;
+}
+
+/** synced rows in grey **/
+
+tr.synced td {
+	color: #999;
+}
+
+div#postal_address textarea {
+height:100px;
+}
+
+/** result screen questions **/
+
+.parent_present {
+	margin:10px 0px;
+}
+
+/** radio buttons in the results form **/
+
+#results_form ul.radio_buttons {
+	list-style: none;
+	padding: 5px 0 0 0;
+	vertical-align: top;
+}
+
+#results_form ul.radio_buttons li {
+	display:inline-block;
+	width:120px;
+}
+
+
+#results_form ul.radio_buttons .btn {
+	text-align: left;
+	width: 90%;
+}
+
+#results_form ul.radio_buttons .btn i.fa {
+	display:inline;
+	float:left;
+	font-size:15px;
+}
+
+#results_form ul.radio_buttons .btn span {
+	display:inline;
+	padding-left:10px;
+}
+
+.alert label {
+	font-weight: normal;
+}

@@ -1,0 +1,12 @@
+default: &default
+  webapp:
+    version: v0.01
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

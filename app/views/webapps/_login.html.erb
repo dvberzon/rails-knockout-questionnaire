@@ -1,0 +1,31 @@
+<!-- ko if: not_on_home_screen() -->
+<div class="alert alert-warning">Please install this webapp on your ipad homescreen</div>
+<!-- /ko -->
+<form class="form-horizontal" role="form" data-bind="submit: login">
+<div class="form-group">
+  <label for="inputEmail3" class="col-sm-2 control-label">Researcher</label>
+  <div class="col-sm-10">
+    <ul class="list-inline">
+      <!-- ko with: researcherList -->
+        <!-- ko foreach: list -->
+        <li><a href="#" class="btn" data-bind="text: text, css: {'btn-primary': selected(), 'btn-default': !selected() }, click: click"></a></li>
+        <!-- /ko -->
+        <li data-bind="visible: more_button_visible"><a href="#" data-bind="click: more_button_click">more researchers&hellip;</a></li>
+      <!-- /ko -->
+    </ul>
+  </div>
+</div>
+<!-- ko if: researcherList.selected_researcher -->
+<div class="form-group">
+  <label for="inputPassword3" class="col-sm-2 control-label">4-Digit PIN</label>
+  <div class="col-sm-3">
+    <input type="text" pattern="\d*" class="form-control" id="inputPassword3" placeholder="eg. 1234" data-bind="value: pin">
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <a href="#" class="btn btn-default btn-lg pull-right" data-bind="click: login">Sign in</a>
+  </div>
+</div>
+<!-- /ko -->
+</form>

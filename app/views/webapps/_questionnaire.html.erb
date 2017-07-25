@@ -1,0 +1,89 @@
+<!-- ko with: wizard -->
+<div class="step_container">
+	<!-- ko ifnot: current_step().researcher_step -->
+	<div class="progress">
+	  <div class="progress-bar" role="progressbar" data-bind="attr: {'style': 'width:' + progress_percentage()}, text: progress_percentage">
+	  </div>
+	</div>
+	<!-- /ko -->
+	<!-- ko with: current_step -->
+		<!-- ko if: intro -->
+		<div class="lead text-info" data-bind="html: intro">
+		</div>
+		<!-- /ko -->
+		<!-- ko if:image --><img class="top_image" data-bind="attr: {src: '/images/' + image}"></img><!-- /ko -->
+		<!-- ko if: measures().length > 0 -->
+		<div class="well" data-bind="attr: {id: id}">
+			<ul class="measures list-unstyled" data-bind="foreach: measures">
+				<!-- ko if: $data.visible -->
+				<li>
+					<!-- ko if: type == 'info' -->
+						<p data-bind="text: text"></p>
+					<!-- /ko -->
+					<!-- ko ifnot: type == 'info' -->
+						<div class="measure" data-bind="css: style, attr:{id: id}">
+							<label data-bind="html: text, css: {mandatory: mandatory}"></label>
+							<!-- ko if: type == 'radio' -->
+							<ul class="options radio_buttons" data-bind="foreach: radio_buttons(), css: num_options_css">
+								<%= render :partial => 'radio_button' %>
+							</ul>
+							<!-- /ko -->
+							<!-- ko if: type == 'string' -->
+							<input type="text" class="form-control" autocapitalize="off" autocorrect="off" data-bind="value: value, valueUpdate: 'input'"></input>
+							<!-- /ko -->
+							<!-- ko if: type == 'telephone' -->
+							<input type="tel" class="form-control" data-bind="value: value, valueUpdate: 'input'"></input>
+							<!-- /ko -->
+							<!-- ko if: type == 'text' -->
+							<textarea class="form-control" data-bind="value: value, valueUpdate: 'input'"></textarea>
+							<!-- /ko -->
+							<!-- ko if: type=='select' -->
+	                        <select class="form-control" data-bind="value: value, options: filtered_options, optionsText: 'name', optionsValue: 'value', optionsCaption: 'please select'">
+	                        </select>
+	                        <!-- /ko -->
+	                        <!-- ko if: type=='slider' -->
+	                        <div class="slider_div">
+	                          <div class="column column_l">
+	                            <span>100</span>
+	                            <span>90</span>
+	                            <span>80</span>
+	                            <span>70</span>
+	                            <span>60</span>
+	                            <span>50</span>
+	                            <span>40</span>
+	                            <span>30</span>
+	                            <span>20</span>
+	                            <span>10</span>
+	                            <span>0</span>
+	                          </div>
+	                          <div class="column column_r">
+	                            <span class="slider" data-bind="slider: value"></span>
+	                          </div>
+	                          <input id="slider_input" type="text" data-bind="value: value"></input>
+	                          <br clear="all"/>
+	                        </div>
+	                        
+	                        <!-- /ko -->
+						</div>
+					<!-- /ko -->
+				</li>
+				<!-- /ko -->
+			</ul>
+		</div>
+		<!-- /ko -->
+		
+	<!-- /ko -->
+	</div>
+	<p class="text-right">
+		<!-- ko if: has_prev --><a href="#" class="btn btn-lg btn-default pull-left" data-bind="click: prev">Back</a><!-- /ko -->
+		<!-- ko if: has_next -->
+			<!-- ko if: current_step().researcher_step -->
+			<a href="#" class="btn btn-lg btn-default" data-bind="click: save">Save and continue later</a>
+			<!-- /ko -->
+			<a href="#" class="btn btn-lg btn-info" data-bind="css: {'disabled': !current_step().completed()}, click: next">Next</a>
+		<!-- /ko -->
+		<!-- ko ifnot: has_next -->
+			<a href="#" class="btn btn-lg btn-primary" data-bind="click: finish">Finish</a>
+		<!-- /ko -->
+	</p>
+<!-- /ko -->

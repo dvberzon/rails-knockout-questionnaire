@@ -1,0 +1,48 @@
+<% version = APP_CONFIG['webapp']['version'] %>
+<!DOCTYPE html>
+<html lang="en" ><!--manifest="/sipsjr.appcache"-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
+    <meta name="viewport" content="user-scalable=no, width=768">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/icon114.png">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--link rel="shortcut icon" href="../../assets/ico/favicon.ico"-->
+
+    <title>Rails Knockout Questionnaire Demo</title>
+    
+    <link href="/bootstrap/css/bootstrap-theme.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/bootstrap/css/bootstrap.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/app.css?<%= version %>" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/css/jquery.nouislider.min.css" media="screen" rel="stylesheet" type="text/css" />
+    </head>
+
+  <body>
+      <%= yield %>
+      <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/knockout-3.1.0.js"></script>
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/jquery.nouislider.min.js"></script>
+    <script src='/js/fastclick.js'></script>
+    <script src="/js/sha1.js?<%= version %>"></script>
+    <script src="/js/webapp.js?<%= version %>"></script>
+    <script src="/js/persistence.js?<%= version %>"></script>
+    <script src="/js/participants.js?<%= version %>"></script>
+    <script src="/js/participant_admin.js?<%= version %>"></script>
+    <script src="/js/steps.js?<%= version %>"></script>
+    <script src="/js/measures.js?<%= version %>"></script>
+    <script src="/js/wizard.js?<%= version %>"></script>
+    <script src="/js/researchers.js?<%= version %>"></script>
+    <script src="/js/main.js?<%= version %>"></script>
+    <%= content_for :extra_js %>
+  </body>
+</html>

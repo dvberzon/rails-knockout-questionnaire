@@ -1,0 +1,145 @@
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <!-- ko with: $parent -->
+      <div class="row">
+        <div class="col-sm-4">
+          <span data-bind="text: moment().format('ddd D MMM YYYY')"></span>
+        </div>
+        <div class="col-sm-4 text-center">
+          Version: <%= APP_CONFIG['webapp']['version'] %>
+        </div>
+        <div class="col-sm-4 text-right">
+          <a href="#" data-bind="if: online, click: check_for_update">Check for updates</a>
+        </div>
+      </div>
+      <p data-bind="visible: update_ready()=='ready'">
+        There is a new version of the webapp available on <span data-bind="text: moment(update_ready_date()).format('ddd D MMM YYYY HH:mm')"></span> 
+        <a href="#" data-bind="click: update_cache">Click to reload the page</a></p>
+      <p data-bind="visible: update_ready()=='none'">No updates available on <span data-bind="text: moment(update_ready_date()).format('ddd D MMM YYYY HH:mm')"></span></p>
+      <!-- /ko -->
+    </div>
+  </div>
+  
+  
+  <!-- ko with: activity_panel -->
+    <!-- ko with: data -->
+    <div class="panel panel-info">
+      <div class="panel-heading">Today's activity (<span data-bind="text: moment().format('ddd D MMM YYYY')"></span>)</div>
+      <div class="panel-body">
+          <p>
+            <ul class="list-inline">
+              <li>Added: <span class="label label-success" data-bind="text: num_added"></span></li>
+              <li>Approached: <span class="label label-success" data-bind="text: num_approached"></span></li>
+              <li>Passed inclusion: <span class="label label-success" data-bind="text: included"></span></li>
+              <li>Consented: <span class="label label-success" data-bind="text: consented"></span></li>
+              <li>Completed: <span class="label label-success" data-bind="text: completed"></span></li>
+            </ul>
+          </p>
+          <p>
+            <ul class="list-inline">
+              <li>Not Approached: <span class="label label-danger" data-bind="text: not_approached"></span></li>
+              <li>Terminated: <span class="label label-danger" data-bind="text: terminated"></span></li>
+              <li>Inclusion Failed: <span class="label label-danger" data-bind="text: not_included"></span></li>
+              <li>Not Consented: <span class="label label-danger" data-bind="text: not_consented"></span></li>
+            </ul>
+          </p>
+          <p>
+            <ul class="list-inline">
+              <li>Synchronised: <span class="label label-success" data-bind="text: synced"></span></li>
+              <li>Ready to synchronise: <span class="label label-primary" data-bind="text: can_sync"></span></li>
+              <li>Incomplete: <span class="label label-danger" data-bind="text: cant_sync"></span></li>
+            </ul>
+          </p>
+          <p>
+            Of those approached:
+            <ul class="list-inline">
+              <li>Male: <span class="label label-default" data-bind="text: male"></span></li>
+              <li>Female: <span class="label label-default" data-bind="text: female"></span></li>
+            </ul>
+            <ul class="list-inline">
+              <li>Age</li>
+              <li>16 - 18: <span class="label label-default" data-bind="text: age_16_18"></span></li>
+              <li>19 - 24: <span class="label label-default" data-bind="text: age_19_24"></span></li>
+              <li>25 - 34: <span class="label label-default" data-bind="text: age_25_34"></span></li>
+              <li>35 - 44: <span class="label label-default" data-bind="text: age_35_44"></span></li>
+              <li>45 - 60: <span class="label label-default" data-bind="text: age_45_60"></span></li>
+              <li>over 60: <span class="label label-default" data-bind="text: age_over60"></span></li>
+            </ul>
+          </p>
+
+      </div>
+    </div>
+    <div class="alert alert-success" data-bind="visible: can_sync > 0">
+      <span class="label label-default" data-bind="text: can_sync"></span>
+      <!-- ko if: can_sync == 1 -->Participant is<!-- /ko -->
+      <!-- ko if: can_sync > 1 -->Participants are<!-- /ko --> ready to be synchronised. <!-- ko if: theApp.online() --><a href="#" class="btn btn-default btn-sm pull-right" data-bind="click: function(){ Participant.sync_all() }"><i class="fa fa-refresh" data-bind="css: {'fa-spin':Participant.syncing_all}"></i> Synchronise All</a><!-- /ko -->
+      <!-- ko ifnot: theApp.online() -->Please connect to the internet to synchronise data.<!-- /ko -->
+    </div>
+    <!-- ko if: can_sync == 0 -->
+    <div class="alert alert-success" data-bind="visible: old_unsynced > 0">
+      <span class="label label-default" data-bind="text: old_unsynced"></span>
+      participant<!-- ko if: old_unsynced > 1 -->s<!-- /ko -->  from previous days need to be synchronised. 
+      <!-- ko if: theApp.online() --><a href="#" class="btn btn-default btn-sm pull-right" data-bind="click: function(){ Participant.sync_all() }"><i class="fa fa-refresh" data-bind="css: {'fa-spin':Participant.syncing_all}"></i> Synchronise All</a><!-- /ko -->
+      <!-- ko ifnot: theApp.online() -->Please connect to the internet to synchronise participant data.<!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <div class="alert alert-warning" data-bind="visible: cant_sync > 0">
+      <span class="label label-default" data-bind="text: cant_sync"></span> participant<!-- ko if: cant_sync > 1 -->s<!-- /ko --> can not yet be synchronised. Please complete the questionnaire, or mark them as "not approached", or "Terminated"
+    </div>
+    <!-- /ko -->
+  <!-- /ko -->
+
+  <!-- # if not editing a participant show the list -->
+
+  <!-- ko with: participant_list -->
+  <h2>Todays Participants</h2>
+  <p><a href="#" class="btn btn-info" data-bind="click: function(){ new_participant() }"><i class="glyphicon glyphicon-plus"></i> Add new participant</a></p>
+  <table class="table table-condensed">
+    <tr>
+      <th>Date</th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Age/Gender</th>
+      <th>Status</th>
+      <th>Added by</th>
+      <th>Sync</th>
+      <th></th>
+    </tr>
+    <!-- ko foreach: list -->
+    <tr data-bind="css: {'synced': synced}">
+      <td data-bind="text: date_added_str"></td>
+      <!--td data-bind="text: participant_id"></td-->
+      <td data-bind="text: study_id"></td>
+      <td data-bind="text: first_name"></td>
+      <td><span  data-bind="text: age"></span><!-- ko ifnot: gender() == null --><span  data-bind="text: '('+gender()+')'"></span><!-- /ko --></td>
+      <!--td data-bind="text: gender_str"></td-->
+      
+      <td data-bind="with: label_def"><span class="label" data-bind="text: name, css: ('label-' + bootstrap_colour)"></span></td>
+
+      <td data-bind="text: added_by_str"></td>
+      <td>
+        <!-- ko if: can_sync() && theApp.online() -->
+        <a href="#" class="btn btn-default btn-xs" data-bind="click: sync"><i class="fa fa-refresh" data-bind="css: {'fa-spin':syncing}"></i></a>
+        <!-- /ko -->
+        <!-- ko if: synced -->
+          <i class="glyphicon glyphicon-ok text-success"></i>
+        <!-- /ko -->
+        <!-- ko if: should_sync -->
+          <i class="glyphicon glyphicon-warning-sign text-warning"></i>
+          <!-- /ko -->  
+      </td>
+      <td>
+        <!-- ko if: can_edit -->
+          <a href="#" class="btn btn-xs btn-primary" data-bind="click: function(){ $parent.edit($index())}"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+          <!-- ko if: can_start -->
+            <a href="#" class="btn btn-xs btn-success" data-bind="click: function(){ $parent.start_questionnaire($index())}"><i class="glyphicon glyphicon-play"></i> Start Data</a>
+          <!-- /ko -->
+          <!-- ko if: can_continue -->
+            <a href="#" class="btn btn-xs btn-info" data-bind="click: function(){ $parent.continue_questionnaire($index())}"><i class="glyphicon glyphicon-play"></i> Continue Data</a>
+          <!-- /ko -->
+        <!-- /ko -->
+      </td>
+    </tr> 
+    <!-- /ko -->
+  </table>
+  <!-- /ko -->

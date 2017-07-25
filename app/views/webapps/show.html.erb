@@ -1,2 +1,28 @@
-<h1>Webapps#show</h1>
-<p>Find me in app/views/webapps/show.html.erb</p>
+<div id="application">
+  <div class="container">
+  <!-- ko with: page -->
+    <!-- ko if: $data instanceof AdminPage -->
+      <p class="logged_in_as">Logged in as <span class="label label-info" data-bind="text: $parent.current_researcher().username"></span> <a href="#" class="text-danger" data-bind="click: logout">Logout</a></p>
+    <!-- /ko -->
+    <div class="starter-template">
+    <h1>Apple questionnaire</h1>
+    <p class="lead" data-bind="text: page_title"></p>
+    <!-- ko ifnot: typeof subtitle == 'undefined' -->
+      <p class="lead text-info" data-bind="text: subtitle"></p>
+    <!-- /ko -->
+    </div>
+
+
+    <!-- ### choose which page to display, based on $data, which is the current scope (appModel.page) -->
+    <!-- ko if: $data instanceof LoginPage -->
+      <%= render 'login' %>
+    <!-- /ko --> 
+    <!-- ko if: $data instanceof AdminPage -->
+    	<%= render 'admin' %>
+    <!-- /ko -->
+    <!-- ko if: $data instanceof QuestionnairePage -->
+    	<%= render 'questionnaire' %>
+    <!-- /ko -->    
+  <!-- /ko -->
+  </div>
+</div>

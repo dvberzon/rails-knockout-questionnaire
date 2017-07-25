@@ -1,0 +1,111 @@
+<!-- ko with: editing_participant -->
+    
+      <div class="well">
+        <ul class="list-inline">
+          <li><label>Participant ID</label>: <span data-bind="text: participant_id"></span></li>
+          <li data-bind="with: label_def"><label>Status</label>: <span class="label" data-bind="text: name, css: ('label-' + bootstrap_colour)"></span></li>
+          <li><label>Added</label>: <i class="glyphicon glyphicon-time"></i> <span data-bind="text: date_added_str"></span></li>
+          <!--li><label>Data Collection started</label>: <i class="glyphicon glyphicon-time"></i> 20 March 2014 14:54</li-->
+        </ul>
+      </div>
+
+      <form class="form-horizontal" id="participant_form" role="form" data-bind="submit: function(){ return false }">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">First Name</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" placeholder="First Name" data-bind="value: first_name" autocapitalize="off" autocorrect="off">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Age</label>
+          <div class="col-sm-9">
+            <select class="form-control" data-bind="options: AGES, optionsText: 'name', optionsValue: 'value', value: age">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Gender</label>
+          <div class="col-sm-9">
+            <ul class="radio_buttons" data-bind="foreach: form().gender_buttons()">
+              <%= render :partial => 'radio_button' %>
+            </ul>
+          </div>
+        </div>
+        <div data-bind="css: { 'panel panel-default': (participant_approached()=='no')}">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Was particiant approached</label>
+            <div class="col-sm-9">
+              <ul class="radio_buttons" data-bind="foreach: form().approached_buttons()">
+                <%= render :partial => 'radio_button' %>
+              </ul>
+            </div>
+          </div>
+          <div data-bind="visible: participant_approached()=='no'">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">Reason for not approaching</label>
+              <div class="col-sm-9">
+                <select class="form-control" data-bind="options: REASONS_NOT_APPROACHED, optionsText: 'name', optionsValue: 'value', value: reason_not_approached">
+                </select>
+              </div>
+            </div>
+            <div class="form-group" data-bind="visible: reason_not_approached() == 'other' ">
+              <label class="col-sm-3 control-label">Please specify</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="reason" data-bind="value: reason_not_approached_other"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+              
+        <!-- ko if: participant_approached() == 'yes' -->
+        <div data-bind="css: { 'panel panel-default': terminated}">
+          <div class="form-group">
+            <label class="col-sm-3 control-label">Data Collection terminated</label>
+            <div class="col-sm-9">
+              <ul class="radio_buttons" data-bind="foreach: form().terminated_buttons()">
+                <%= render :partial => 'radio_button' %>
+              </ul>
+            </div>
+          </div>
+          <div class="form-group" data-bind="visible: terminated">
+            <label class="col-sm-3 control-label">Termination reason</label>
+            <div class="col-sm-9">
+              <select class="form-control" data-bind="options: REASONS_TERMINATED, value: reason_terminated">
+              </select>
+            </div>
+          </div>
+          <div class="form-group" data-bind="visible: terminated">
+            <label class="col-sm-3 control-label">Termination type</label>
+            <div class="col-sm-9">
+               <ul class="radio_buttons" data-bind="foreach: form().termination_type_buttons()">
+                <%= render :partial => 'radio_button' %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /ko -->
+        <div class="form-group">
+          <label class="col-sm-3 control-label">Notes</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" data-bind="value: notes"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10 text-right">
+            <a href="#" class="btn btn-primary" data-bind="click: function(){ $parent.done() }">Save</a>
+            <!-- ko if: can_start -->
+            <a href="#" class="btn btn-success" data-bind="click: start_questionnaire"><i class="glyphicon glyphicon-play"></i> Start Data Collection</a>
+            <!-- /ko -->
+            <!-- ko if: can_continue -->
+            <a href="#" class="btn btn-info" data-bind="click: continue_questionnaire"><i class="glyphicon glyphicon-play"></i> Continue Data Collection</a>
+            <!-- /ko -->
+            <!-- ko if: completed -->
+            <a href="#" class="btn btn-warning" data-bind="click: results_page"><i class="glyphicon glyphicon-ok"></i> Show Results</a>
+            <!-- /ko -->
+            <!-- ko if: can_sync() && theApp.online() -->
+            <a href="#" class="btn btn-default" data-bind="click: function(){ sync(); }"><i class="fa fa-refresh" data-bind="css: {'fa-spin':syncing}"></i> Sync now</a>
+            <!-- /ko -->
+          </div>
+        </div>
+      </form>
+  <!-- /ko -->
