@@ -2,6 +2,8 @@
 <script type="text/javascript">
   STEPS = <%= @steps_yaml['STEPS'].to_json.html_safe %>;
   STEP_ORDER = <%= @steps_yaml['STEP_ORDER'].to_json.html_safe %>;
+  OPTION_SETS = <%= @measures_yaml['OPTION_SETS'].to_json.html_safe %>;
+  MEASURES = <%= @measures_yaml['MEASURES'].to_json.html_safe %>;
 </script>
 <% end %>
 <div id="application">
