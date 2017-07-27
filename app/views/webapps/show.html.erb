@@ -1,3 +1,9 @@
+<% content_for :extra_js do %>
+<script type="text/javascript">
+  STEPS = <%= @steps_yaml['STEPS'].to_json.html_safe %>;
+  STEP_ORDER = <%= @steps_yaml['STEP_ORDER'].to_json.html_safe %>;
+</script>
+<% end %>
 <div id="application">
   <div class="container">
   <!-- ko with: page -->

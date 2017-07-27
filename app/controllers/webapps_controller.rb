@@ -3,6 +3,7 @@ class WebappsController < ApplicationController
   protect_from_forgery :except => ['sync']
 
   def show
+    @steps_yaml = YAML.load_file("#{Rails.root}/config/steps.yml")
   end
 
   def sync

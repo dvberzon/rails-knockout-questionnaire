@@ -240,7 +240,7 @@ MEASURES = {
       }
     },
 
-    "ageFirst":{
+    "age_first":{
     "text":"How old were you when you ate your first apple",
     "type":"radio",
     "style": "flat",
