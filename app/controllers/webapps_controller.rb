@@ -23,4 +23,8 @@ class WebappsController < ApplicationController
     }
     render :json => data
   end
+
+  def appcache
+    render 'appcache', :layout=> nil, :content_type => 'text/cache-manifest'
+  end
 end
