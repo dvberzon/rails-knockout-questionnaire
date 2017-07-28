@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  added_by_id: 1
+  age: MyString
+  questionnaire_started: 2017-07-28 08:21:52
+  completed: false
+  consented: false
+  date_added: 2017-07-28 08:21:52
+  date_consented: 2017-07-28 08:21:52
+  date_modified: 2017-07-28 08:21:52
+  first_name: MyString
+  gender: MyString
+  included: false
+  notes: MyText
+  participant_id: 1
+  patient_approached: false
+  reason_not_approached: MyString
+  reason_not_approached_other: MyString
+  reason_terminated: MyString
+  status: MyString
+  study_id: MyString
+  terminated: false
+  termination_type: MyString
+
+two:
+  added_by_id: 1
+  age: MyString
+  questionnaire_started: 2017-07-28 08:21:52
+  completed: false
+  consented: false
+  date_added: 2017-07-28 08:21:52
+  date_consented: 2017-07-28 08:21:52
+  date_modified: 2017-07-28 08:21:52
+  first_name: MyString
+  gender: MyString
+  included: false
+  notes: MyText
+  participant_id: 1
+  patient_approached: false
+  reason_not_approached: MyString
+  reason_not_approached_other: MyString
+  reason_terminated: MyString
+  status: MyString
+  study_id: MyString
+  terminated: false
+  termination_type: MyString
