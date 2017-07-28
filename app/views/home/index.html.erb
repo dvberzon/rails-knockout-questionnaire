@@ -1,1 +1,15 @@
-<h1>Apple Questionnaire server</h1>
+<h1>Rails Knockout Questionnaire</h1>
+<p class="lead">This system represents a webapp that allows researchers to carry out questionnaires on a mobile device and sync the results up to a server.</p>
+<p>The front end webapp is written in javascript using knockout.js and appcache to provide offline capabilities. The backend server is written in rails</p>
+<p>Researchers can log on, recruit participants and take them through a research questionnaire.</p>
+<p>For demo purposes the questions concern apples</p>
+<p>When offline researchers can collect participant data - stored in localStorage - and when the device has internet access participant data can then be synced with the server</p>
+
+<h2>Researcher logins</h2>
+<p>The following researchers can log in the webapp</p>
+<ul class="list-unstyled">
+  <li><strong>Name:</strong> testuser</li>
+  <li><strong>Pin number:</strong> 1234</li>
+</ul>
+<p><%= link_to 'Open the webapp', webapp_url, :target=>'_blank', :class=>'btn btn-info btn-large' %></p>
+<p><%= link_to 'View the list of participants', participants_url, :class=>'btn btn-default btn-large' %></p>

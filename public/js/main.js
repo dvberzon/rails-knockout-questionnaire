@@ -141,8 +141,7 @@ AppModel = function(){
 
 	this.online_timeout = null;
 	this.check_online = function(){
-		//this.online(navigator.onLine);
-		this.online(true);
+		this.online(navigator.onLine);
 		this.online_timeout = setTimeout(function(){theApp.check_online()}, 10000); // check if we're online every 10s
 	}
 

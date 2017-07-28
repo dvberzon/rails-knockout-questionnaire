@@ -36,8 +36,11 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li ><a href="<%= root_url %>">Home</a></li>
-              <li ><a href="<%= participants_url %>">Participants</a></li>
+              <li <%= active_class_attribute 'home' %> ><a href="<%= root_url %>">Home</a></li>
+              <li <%= active_class_attribute 'participants' %> ><a href="<%= participants_url %>">Participants</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <a href="<%= webapp_url %>" target="_blank" class="btn btn-info" id="webapp">Open Webapp</a>
             </ul>
           </div>
         </div>

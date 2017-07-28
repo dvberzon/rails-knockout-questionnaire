@@ -206,7 +206,7 @@ Participant = function(data){
 
 
 	this.can_sync = ko.computed(function(){
-		return true //(!this.synced()) // not already synched
+		return (!this.synced()) // not already synched
 				&& (!this.is_terminate_with_delete()) // not terminate delte
 				&&  (
 						[
@@ -315,7 +315,7 @@ Participant.next_consent_id = function(){
 	last_id = parseInt(localStorage[LAST_CONSENT_ID_STORAGE_KEY] || 0);
 	id = last_id + 1;
 	localStorage[LAST_CONSENT_ID_STORAGE_KEY] = id;
-	return 'i' + WebApp.install_id + 'p' + id;
+	return 'i' + WebApp.install_id() + 'p' + id;
 }
 
 Participant.syncing_all = ko.observable(false);
