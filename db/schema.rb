@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728073826) do
+ActiveRecord::Schema.define(version: 20170728130831) do
+
+  create_table "installs", force: :cascade do |t|
+    t.string "session"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "participants", force: :cascade do |t|
     t.integer "added_by_id"

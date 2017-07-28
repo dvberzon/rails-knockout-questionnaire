@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<h1>Participant details <small><%= @participant %></small></h1>
+<p><%= link_to 'Back to list', participants_path, :class=>"btn btn-default"%></p>
+<h2>Details</h2>
 <p>
   <strong>Added by:</strong>
   <%= @participant.added_by_id %>
@@ -27,17 +28,17 @@
 
 <p>
   <strong>Date added:</strong>
-  <%= @participant.date_added %>
+  <%= @participant.date_added.try(:to_s, :long) %>
 </p>
 
 <p>
   <strong>Date consented:</strong>
-  <%= @participant.date_consented %>
+  <%= @participant.date_consented.try(:to_s, :long) %>
 </p>
 
 <p>
   <strong>Date modified:</strong>
-  <%= @participant.date_modified %>
+  <%= @participant.date_modified.try(:to_s, :long) %>
 </p>
 
 <p>
@@ -105,5 +106,12 @@
   <%= @participant.termination_type %>
 </p>
 
-<%= link_to 'Edit', edit_participant_path(@participant) %> |
-<%= link_to 'Back', participants_path %>
+<% if questionnaire = @participant.questionnaire %>
+  <h2>Questionnaire responses</h2>
+  <% questionnaire.responses.each do |k,v| %>
+    <p>
+      <strong><%= k %>:</strong>
+      <%= v %>
+    </p>
+  <% end %>
+<% end %>

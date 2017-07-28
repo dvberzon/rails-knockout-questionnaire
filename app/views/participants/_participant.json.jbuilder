@@ -1,2 +1,0 @@
-json.extract! participant, :id, :added_by_id, :age, :questionnaire_started, :completed, :consented, :date_added, :date_consented, :date_modified, :first_name, :gender, :included, :notes, :participant_id, :patient_approached, :reason_not_approached, :reason_not_approached_other, :reason_terminated, :status, :study_id, :terminated, :termination_type, :created_at, :updated_at
-json.url participant_url(participant, format: :json)

@@ -3,6 +3,7 @@ class WebappsController < ApplicationController
   protect_from_forgery :except => ['sync']
 
   def show
+    @install = Install.for_session session
     @steps_yaml = YAML.load_file("#{Rails.root}/config/steps.yml")
     @measures_yaml = YAML.load_file("#{Rails.root}/config/measures.yml")
   end

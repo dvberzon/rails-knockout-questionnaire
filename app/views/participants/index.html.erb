@@ -2,66 +2,38 @@
 
 <h1>Participants</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Study ID</th>
       <th>Added by</th>
       <th>Age</th>
       <th>Questionnaire started</th>
-      <th>Completed</th>
-      <th>Consented</th>
       <th>Date added</th>
       <th>Date consented</th>
-      <th>Date modified</th>
       <th>First name</th>
       <th>Gender</th>
-      <th>Included</th>
-      <th>Notes</th>
-      <th>Participant</th>
-      <th>Patient approached</th>
-      <th>Reason not approached</th>
-      <th>Reason not approached other</th>
-      <th>Reason terminated</th>
       <th>Status</th>
-      <th>Study</th>
-      <th>Terminated</th>
-      <th>Termination type</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @participants.each do |participant| %>
       <tr>
+        <td><%= participant.study_id %></td>
         <td><%= participant.added_by_id %></td>
         <td><%= participant.age %></td>
-        <td><%= participant.questionnaire_started %></td>
-        <td><%= participant.completed %></td>
-        <td><%= participant.consented %></td>
-        <td><%= participant.date_added %></td>
-        <td><%= participant.date_consented %></td>
-        <td><%= participant.date_modified %></td>
+        <td><%= participant.questionnaire_started.try(:to_s, :short) %></td>
+        <td><%= participant.date_added.try(:to_s, :short) %></td>
+        <td><%= participant.date_consented.try(:to_s, :short) %></td>
         <td><%= participant.first_name %></td>
         <td><%= participant.gender %></td>
-        <td><%= participant.included %></td>
-        <td><%= participant.notes %></td>
-        <td><%= participant.participant_id %></td>
-        <td><%= participant.patient_approached %></td>
-        <td><%= participant.reason_not_approached %></td>
-        <td><%= participant.reason_not_approached_other %></td>
-        <td><%= participant.reason_terminated %></td>
         <td><%= participant.status %></td>
-        <td><%= participant.study_id %></td>
-        <td><%= participant.terminated %></td>
-        <td><%= participant.termination_type %></td>
-        <td><%= link_to 'Show', participant %></td>
-        <td><%= link_to 'Edit', edit_participant_path(participant) %></td>
-        <td><%= link_to 'Destroy', participant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to 'Show', participant, :class=>"btn btn-default" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Participant', new_participant_path %>

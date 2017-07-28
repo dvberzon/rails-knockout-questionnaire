@@ -7,6 +7,7 @@ class Participant < ApplicationRecord
         participant_id: params[:participant_id],
         install_id: params[:install_id]
       ).first_or_create
+      params.permit!
       params.each do |field, value|
         if value
           case field
@@ -16,7 +17,9 @@ class Participant < ApplicationRecord
             participant.send("#{field}=", date)
           when 'responses'
             questionnaire = participant.build_questionnaire
-            questionnaire.responses = value
+            value.each do |k, v|
+              questionnaire.send("#{k}=", v) if(questionnaire.respond_to? k)
+            end
           else
             participant.send("#{field}=", value) if(participant.respond_to? field)
           end
@@ -24,5 +27,11 @@ class Participant < ApplicationRecord
       end
       participant
     end
+  end
+
+  def to_s
+    name = questionnaire.try(:full_name) || first_name
+    name = '<no name given>' if name.blank?
+    "#{id} #{name}"
   end
 end
