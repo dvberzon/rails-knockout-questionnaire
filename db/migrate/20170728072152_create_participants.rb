@@ -2,6 +2,7 @@ class CreateParticipants < ActiveRecord::Migration[5.1]
   def change
     create_table :participants do |t|
       t.integer :added_by_id
+      t.string :install_id
       t.string :age
       t.datetime :questionnaire_started
       t.boolean :completed

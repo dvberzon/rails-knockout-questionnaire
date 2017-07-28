@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20170728073826) do
 
   create_table "participants", force: :cascade do |t|
     t.integer "added_by_id"
+    t.string "install_id"
     t.string "age"
     t.datetime "questionnaire_started"
     t.boolean "completed"

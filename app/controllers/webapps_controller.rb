@@ -8,6 +8,15 @@ class WebappsController < ApplicationController
   end
 
   def sync
+    if(params[:participants])
+      # params[:participants].permit! # permit all sub parameters of participants.
+      params[:participants].each do |index, p|
+        participant = Participant.from_params p
+        if participant
+          participant.save
+        end
+      end
+    end
     data = {
       researchers: [
         {"id":1,"username":"testuser","password":"07f6fe01b008dde0e398666ed74c773692052105ba58"}

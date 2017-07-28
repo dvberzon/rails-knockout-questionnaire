@@ -21,7 +21,6 @@ WebApp.install_id = function(){
 WebApp.last_updated = ko.observable(null);
 
 WebApp.sync = function(data, callback){
-	data['install_id'] = WebApp.install_id();
 	if(navigator.onLine){
 		$.ajax({type: 'POST', url:'/webapp/sync', data: data})
 			.success(function(data){

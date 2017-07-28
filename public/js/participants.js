@@ -69,6 +69,8 @@ Participant = function(data){
 				delete obj[key];
 			}
 		}
+		// add the install id into the participant
+		obj.install_id = WebApp.install_id();
 		return obj;
 	}
     
