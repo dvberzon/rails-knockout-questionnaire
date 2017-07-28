@@ -25,7 +25,7 @@ var wizard_functions = {
   },
 
   included: function(participant){
-      return participant.included();
+      return participant.inclusion_criteria_passed();
   },
 
   consent_finished: function(participant){
