@@ -45,6 +45,7 @@ STEPS:
         the research and why they are interested in apples</p>
         <h3 class='text-success text-center'>When you have finished, please press next and hand the consent form to the participant</h3>
     researcher_step: true
+    visible_if: included
 
   consent: 
     title: "Participant Consent Form"
@@ -58,6 +59,7 @@ STEPS:
       - consent5
       - consent6
     finish_func: consent_finished
+    visible_if: included
 
   consent_n:
     title: "Not Consented"
@@ -72,7 +74,7 @@ STEPS:
     title: "Thank you"
     intro: |
         <p>Thank you very much for your time.</p>
-        <p>Please hand the ipad back to the researcher.</p>
+        <p>Please return the device to the researcher.</p>
     visible_if: not_consented
 
   contact:

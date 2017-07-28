@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :participants
   resource :webapp do
     member do
       post :sync

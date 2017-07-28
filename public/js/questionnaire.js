@@ -24,12 +24,16 @@ var wizard_functions = {
     participant.included(false);
   },
 
+  included: function(participant){
+      return participant.included();
+  },
+
   consent_finished: function(participant){
     participant.set_consent();
   },
 
   consented_null: function(participant){
-    return participant.consented()==null;
+    return participant.included() && participant.consented()==null;
   },
 
   consent_n_finished: function(participant){
@@ -37,7 +41,7 @@ var wizard_functions = {
   },
 
   not_consented: function(participant){
-    return !participant.consented();
+    return participant.included() && !participant.consented();
   },
 
   consented: function(participant){

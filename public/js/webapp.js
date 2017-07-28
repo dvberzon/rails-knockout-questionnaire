@@ -10,9 +10,18 @@ WebApp.ls_hash = function(){
 	return new LocalStorageHash(WEBAPP_STORAGE_KEY);
 }
 
+WebApp.set_install_id = function (id){
+	localStorage[INSTALL_KEY] = id;
+}
+
+WebApp.install_id = function(){
+	return localStorage[INSTALL_KEY]
+}
+
 WebApp.last_updated = ko.observable(null);
 
 WebApp.sync = function(data, callback){
+	data['install_id'] = WebApp.install_id();
 	if(navigator.onLine){
 		$.ajax({type: 'POST', url:'/webapp/sync', data: data})
 			.success(function(data){

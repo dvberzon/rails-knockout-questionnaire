@@ -4,6 +4,7 @@
   STEP_ORDER = <%= @steps_yaml['STEP_ORDER'].to_json.html_safe %>;
   OPTION_SETS = <%= @measures_yaml['OPTION_SETS'].to_json.html_safe %>;
   MEASURES = <%= @measures_yaml['MEASURES'].to_json.html_safe %>;
+  WebApp.set_install_id('<%= session.id %>');
 </script>
 <% end %>
 <div id="application">

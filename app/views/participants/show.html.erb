@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Added by:</strong>
+  <%= @participant.added_by_id %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @participant.age %>
+</p>
+
+<p>
+  <strong>Questionnaire started:</strong>
+  <%= @participant.questionnaire_started %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @participant.completed %>
+</p>
+
+<p>
+  <strong>Consented:</strong>
+  <%= @participant.consented %>
+</p>
+
+<p>
+  <strong>Date added:</strong>
+  <%= @participant.date_added %>
+</p>
+
+<p>
+  <strong>Date consented:</strong>
+  <%= @participant.date_consented %>
+</p>
+
+<p>
+  <strong>Date modified:</strong>
+  <%= @participant.date_modified %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @participant.first_name %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @participant.gender %>
+</p>
+
+<p>
+  <strong>Included:</strong>
+  <%= @participant.included %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @participant.notes %>
+</p>
+
+<p>
+  <strong>Participant:</strong>
+  <%= @participant.participant_id %>
+</p>
+
+<p>
+  <strong>Patient approached:</strong>
+  <%= @participant.patient_approached %>
+</p>
+
+<p>
+  <strong>Reason not approached:</strong>
+  <%= @participant.reason_not_approached %>
+</p>
+
+<p>
+  <strong>Reason not approached other:</strong>
+  <%= @participant.reason_not_approached_other %>
+</p>
+
+<p>
+  <strong>Reason terminated:</strong>
+  <%= @participant.reason_terminated %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @participant.status %>
+</p>
+
+<p>
+  <strong>Study:</strong>
+  <%= @participant.study_id %>
+</p>
+
+<p>
+  <strong>Terminated:</strong>
+  <%= @participant.terminated %>
+</p>
+
+<p>
+  <strong>Termination type:</strong>
+  <%= @participant.termination_type %>
+</p>
+
+<%= link_to 'Edit', edit_participant_path(@participant) %> |
+<%= link_to 'Back', participants_path %>
