@@ -4,8 +4,8 @@ class WebappsController < ApplicationController
 
   def show
     @install = Install.for_session session
-    @steps_yaml = YAML.load_file("#{Rails.root}/config/steps.yml")
-    @measures_yaml = YAML.load_file("#{Rails.root}/config/measures.yml")
+    @steps_yaml = Questionnaire.steps_yaml
+    @measures_yaml = Questionnaire.measures_yaml
   end
 
   def sync

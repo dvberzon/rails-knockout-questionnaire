@@ -4,9 +4,12 @@ default: &default
 
 development:
   <<: *default
+  cache_yaml: false
 
 test:
   <<: *default
+  cache_yaml: false
 
 production:
   <<: *default
+  cache_yaml: true

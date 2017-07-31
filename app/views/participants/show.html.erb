@@ -1,117 +1,151 @@
 <h1>Participant details <small><%= @participant %></small></h1>
 <p><%= link_to 'Back to list', participants_path, :class=>"btn btn-default"%></p>
-<h2>Details</h2>
-<p>
-  <strong>Added by:</strong>
-  <%= @participant.added_by_id %>
-</p>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Details
+  </div>
+  <div class="panel-body">
+    <ul class="list-inline">
 
-<p>
-  <strong>Age:</strong>
-  <%= @participant.age %>
-</p>
+      <li>
+        <strong>Devie Install ID:</strong>
+        <span class="text-info"><%= @participant.install_id %></span>
+      </li>
+      <li>
+        <strong>ID on device:</strong>
+        <span class="text-info"><%= @participant.participant_id %></span>
+      </li>
 
-<p>
-  <strong>Questionnaire started:</strong>
-  <%= @participant.questionnaire_started %>
-</p>
+      <li>
+        <strong>Study id:</strong>
+        <span class="text-info"><%= @participant.study_id %></span>
+      </li>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @participant.completed %>
-</p>
+      <li>
+        <strong>Added by:</strong>
+        <span class="text-info"><%= @participant.added_by.try(:username) %></span>
+      </li>
 
-<p>
-  <strong>Consented:</strong>
-  <%= @participant.consented %>
-</p>
 
-<p>
-  <strong>Date added:</strong>
-  <%= @participant.date_added.try(:to_s, :long) %>
-</p>
+      <li>
+        <strong>Status:</strong>
+        <span class="text-info"><%= @participant.status %></span>
+      </li>
 
-<p>
-  <strong>Date consented:</strong>
-  <%= @participant.date_consented.try(:to_s, :long) %>
-</p>
+      <li>
+        <strong>Included:</strong>
+        <% if @participant.included %><span class="text-success glyphicon glyphicon-ok"></span><% end %>
+      </li>
 
-<p>
-  <strong>Date modified:</strong>
-  <%= @participant.date_modified.try(:to_s, :long) %>
-</p>
+      <li>
+        <strong>Consented:</strong>
+        <% if @participant.consented %><span class="text-success glyphicon glyphicon-ok"></span><% end %>
+      </li>
 
-<p>
-  <strong>First name:</strong>
-  <%= @participant.first_name %>
-</p>
+      <li>
+        <strong>Completed:</strong>
+        <% if @participant.completed %><span class="text-success glyphicon glyphicon-ok"></span><% end %>
+      </li>
+    </ul>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @participant.gender %>
-</p>
+    <ul class="list-inline">
+      <li>
+        <strong>Questionnaire started:</strong>
+        <span class="text-info"><%= @participant.questionnaire_started %></span>
+      </li>
+      
+      <li>
+        <strong>Date added:</strong>
+        <span class="text-info"><%= @participant.date_added.try(:to_s, :long) %></span>
+      </li>
 
-<p>
-  <strong>Included:</strong>
-  <%= @participant.included %>
-</p>
+      <li>
+        <strong>Date consented:</strong>
+        <span class="text-info"><%= @participant.date_consented.try(:to_s, :long) %></span>
+      </li>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @participant.notes %>
-</p>
+      <li>
+        <strong>Date modified:</strong>
+        <span class="text-info"><%= @participant.date_modified.try(:to_s, :long) %></span>
+      </li>
+    </ul>
 
-<p>
-  <strong>Participant:</strong>
-  <%= @participant.participant_id %>
-</p>
+    <ul class="list-inline">
+      <li>
+        <strong>Age:</strong>
+        <span class="text-info"><%= @participant.age %></span>
+      </li>
 
-<p>
-  <strong>Patient approached:</strong>
-  <%= @participant.patient_approached %>
-</p>
+      <li>
+        <strong>First name:</strong>
+        <span class="text-info"><%= @participant.first_name %></span>
+      </li>
 
-<p>
-  <strong>Reason not approached:</strong>
-  <%= @participant.reason_not_approached %>
-</p>
+      <li>
+        <strong>Gender:</strong>
+        <span class="text-info"><%= @participant.gender %></span>
+      </li>
 
-<p>
-  <strong>Reason not approached other:</strong>
-  <%= @participant.reason_not_approached_other %>
-</p>
 
-<p>
-  <strong>Reason terminated:</strong>
-  <%= @participant.reason_terminated %>
-</p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @participant.status %>
-</p>
+      <li>
+        <strong>Notes:</strong>
+        <span class="text-info"><%= @participant.notes %></span>
+      </li>
+    </ul>
 
-<p>
-  <strong>Study:</strong>
-  <%= @participant.study_id %>
-</p>
+    <ul class="list-inline">
+      <li>
+        <strong>Patient approached:</strong>
+        <% if @participant.patient_approached %><span class="text-success glyphicon glyphicon-ok"></span><% end %>
+      </li>
 
-<p>
-  <strong>Terminated:</strong>
-  <%= @participant.terminated %>
-</p>
+      <li>
+        <strong>Reason not approached:</strong>
+        <span class="text-info"><%= @participant.reason_not_approached %></span>
+      </li>
 
-<p>
-  <strong>Termination type:</strong>
-  <%= @participant.termination_type %>
-</p>
+      <li>
+        <strong>Reason not approached other:</strong>
+        <span class="text-info"><%= @participant.reason_not_approached_other %></span>
+      </li>
 
+      <li>
+        <strong>Reason terminated:</strong>
+        <span class="text-info"><%= @participant.reason_terminated %></span>
+      </li>
+
+
+
+      <li>
+        <strong>Terminated:</strong>
+        <span class="text-info"><%= @participant.terminated %></span>
+      </li>
+
+      <li>
+        <strong>Termination type:</strong>
+        <span class="text-info"><%= @participant.termination_type %></span>
+      </li>
+    </ul>
+  </div>
+</div>
 <% if questionnaire = @participant.questionnaire %>
   <h2>Questionnaire responses</h2>
-  <% questionnaire.responses.each do |k,v| %>
-    <p>
-      <strong><%= k %>:</strong>
-      <%= v %>
-    </p>
+  <% questionnaire.response_data.each do |step| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= step[:id] %>
+      </div>
+      <div class="panel-body">
+        <ul class="list-inline">
+          <% step[:measures].each do |m| %>
+            <li>
+              <strong><%= m[:id] %>:</strong>
+              <span class="text-info"><%= m[:value] %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
 <% end %>

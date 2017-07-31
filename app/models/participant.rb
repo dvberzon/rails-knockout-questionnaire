@@ -1,5 +1,6 @@
 class Participant < ApplicationRecord
   has_one :questionnaire
+  belongs_to :added_by, :class_name => Researcher
 
   def self.from_params params
     if(params[:participant_id] and params[:install_id])

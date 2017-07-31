@@ -9,4 +9,72 @@ class Questionnaire < ApplicationRecord
     :apple_phrases_1, :apple_phrases_2, :apple_phrases_3, :apple_phrases_4, :apple_phrases_5, 
     :apple_phrases_6, :apple_meter]
   store :responses, :accessors => MEASURES
+
+  def response_data
+    steps_yaml = Questionnaire.steps_yaml
+    measures_yaml = Questionnaire.measures_yaml
+    
+    steps_yaml['STEP_ORDER'].map do |step|
+      step_def = steps_yaml['STEPS'][step]
+      if step_def
+        measure_ids = step_def['measures']
+        unless measure_ids.blank?
+          measures = measure_ids.map do |mid|
+            measure = Questionnaire::Measure.new(mid, measures_yaml)
+            if measure
+              # reponse value is an accessor on the responses store
+              value = self.try(mid)
+              {id: mid, value: measure.value_str(value)}
+            end
+          end
+          # output step and measures
+          {id: step, measures: measures}
+        end
+      end
+    end.compact
+  end
+
+  def self.steps_yaml
+    @step_yaml ||= load_yaml('steps')
+
+  end
+
+  def self.measures_yaml
+    @measures_yaml ||= load_yaml('measures')
+  end
+
+  def self.load_yaml name
+    expire_time = APP_CONFIG['cache_yaml'] ? 1.hour : 1.second
+    Rails.cache.fetch("#{name}_yaml", expires_in: expire_time) do
+      YAML::load(File.open("#{Rails.root}/config/#{name}.yml"))
+    end
+  end
+
+  # nested class for measure display
+  class Measure
+    attr_accessor :id
+    def initialize id, yaml
+      measure_def = yaml['MEASURES'][id]
+      if(measure_def)
+        @id = id
+        @type = measure_def['type']
+        @options = measure_def['options']
+        if(@options.nil? and yaml['option_sets'])
+            @options = yaml['option_sets'][measure_def['option_set']]
+        end
+      end
+    end
+
+    def value_str value
+      if @options
+        @options.select{|o| o['value'] == value}.first.try('[]','name')
+      else
+        value
+      end
+    end
+
+    def include?
+      @type != 'info'
+    end
+  end
 end
