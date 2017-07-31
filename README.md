@@ -43,11 +43,11 @@ The installation id allows multiple client webapps to capture participant data a
 
 The questionare steps are defined in yaml files in the config directory:
 
-/config/steps.yml
+[/config/steps.yml](../config/steps.yml)
 
 This file defines the order of the questionnaire steps, and for each step the measures, any introductory text and rule definitions for whether the step is visible
 
-/config/measures.yml
+[/config/measures.yml](../config/measures.yml)
 
 This file defines for each measure it's type and question text, any options it has as well as rules for display and visibility
 
@@ -55,17 +55,17 @@ The yaml is used to generate json for the front end webapp as well as used for d
 
 The javascript source code for the front end webapp is available in the directory
 
-/public/js
+[/public/js](../public/js)
 
 The public directory is used rather than the rails asset pipeline to simplify the process of using appcache for the client assets.
 
 The html for the front end app is generated from rails views and partials which live in
 
-/app/views/webapps
+[/app/views/webapps](../app/views/webapps)
 
 with the appcache generated from the file
 
-/app/views/webapps/appcache.erb
+[/app/views/webapps/appcache.erb](../app/views/webapps/appcache.erb)
 
 # Licensing
 
